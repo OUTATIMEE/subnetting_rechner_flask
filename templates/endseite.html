@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>endseite</title>
+</head>
+<body>
+    <p>IP: {{ ip_cidr }}</p>
+    <p>Netmask: {{ net_mask }}</p>
+    <p>Net-ID: {{ netz_id }}</p>
+    <p>Broadcast: {{ broadcast }}</p>
+    <p>Erste IP: {{ first_ip }}</p>
+    <p>Letzte IP: {{ last_ip }}</p>
+    <p>Verfügbare IPs: {{ ver_ips }}</p>
+
+    <form action="/back" method="GET">
+    <button type="submit">zurück</button>
+    </form>
+
+
+</body>
+</html>
