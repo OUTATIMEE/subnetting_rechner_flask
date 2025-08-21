@@ -3,17 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>startseite</title>
+    <link rel="stylesheet" href="../static/startseite.css">
 </head>
 <body>
+<h1>Subnetting Rechner</h1>
 
+    <form action="/berechne" method="POST">
+        <div class="ip_felder">
+        <input type="text" name="first_ok" placeholder="XXX" maxlength="3">
+        <span class="dot">.</span>
+        <input type="text" name="second_ok" placeholder="XXX" maxlength="3">
+        <span class="dot">.</span>
+        <input type="text" name="third_ok" placeholder="XXX" maxlength="3">
+        <span class="dot">.</span>
+        <input type="text" name="fourth_ok" placeholder="XXX" maxlength="3">
+        <span class="dot">/</span>
+        <input type="text" name="net_mask_eingabe" placeholder="XX" maxlength="2">
+        </div>
 
-<form action="/berechne" method="POST">
-    <input type="text" name="IP_eingabe" placeholder="IP" style="margin-right: 5px">
-    /
-    <input type="text" name="net_mask_eingabe" placeholder="Net-Bits" style="margin-left: 5px">
-    <button type="submit">berechne</button>
-</form>
+        <div class="berechnen_button">
+        <button type="submit">berechnen</button>
+        </div>
+    </form>
+    <div class="Ausgabe">
+        {% if eingabe_falsch %}
+        Keine korrekte Eingabe!
+        {% endif %}
 
-
+        {% if eingabe_richtig %}
+        <p>IP: {{ ip_cidr }}</p>
+        <p>Netzmaske: {{ net_mask }}</p>
+        <p>Net-ID: {{ netz_id }}</p>
+        <p>Broadcast: {{ broadcast }}</p>
+        <p>Erste IP: {{ first_ip }}</p>
+        <p>Letzte IP: {{ last_ip }}</p>
+        <p>Verfügbare IPs: {{ ver_ips }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>

@@ -1,0 +1,64 @@
+.ip_felder{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  input[type="text"] {
+    font-size: 30px;
+    font-weight: bold;
+    width: 3em;
+    height: 1em;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #0D0D0D;
+    background-color: #F22233;
+  }
+}
+
+.dot {
+  font-size: 30px;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 5px;
+}
+
+
+.berechnen_button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+.berechnen_button button{
+  font-size: 40px;
+  font-weight: bold;
+  padding: 3px 5px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid #0D0D0D;
+  background-color: #F22233;
+}
+
+body {
+  background-color: #86A3A6;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.Ausgabe {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.Ausgabe p {
+  margin: 10px 0px;
+  font-size: 30px;
+  font-weight: bold;
+}
