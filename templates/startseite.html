@@ -6,28 +6,61 @@
     <link rel="stylesheet" href="../static/startseite.css">
 </head>
 <body>
-<h1>Subnetting Rechner</h1>
+    <h1>Subnetting Rechner</h1>
+
+    <script>
+        function ip_eingabe_pruefen(current, nextID) {
+            let v = current.value.replace(/\D/g, '');   // löscht/ersetzt alles was keine Zahl ist
+            if (v.length > 3) v = v.slice(0, 3);    // löscht alle Ziffern die nach den ersten 3 noch kommen z.B. beim COPY/PASTE
+            current.value = v;
+
+            if (v.length === 3) {           // Wenn man 3 Ziffern hat wird geprüft ob der Wert den max. Wert (255) überschreitet
+                const n = parseInt(v, 10);  // Wenn ja wird der Inhalt gelöscht
+                if (n > 255) {
+                    current.value = '';
+                    return;
+                }
+                const next = document.getElementById(nextID);   // ist das Eingabefeld bei der max. Anzahl an Ziffern angekommen springt der Cursor ins nächste Feld
+                if (next) next.focus();
+            }
+        }
+        function mask_eingabe_pruefen(current, nextID) {
+            let v = current.value.replace(/\D/g, '');
+            if (v.length > 2) v = v.slice(0, 2);
+            current.value = v;
+
+            if (v.length === 2) {
+                const n = parseInt(v, 10);
+                if (n > 32) {
+                    current.value = '';
+                    return;
+                }
+                const next = document.getElementById(nextID);
+                if (next) next.focus();
+            }
+        }
+    </script>
 
     <form action="/berechne" method="POST">
         <div class="ip_felder">
-        <input type="text" name="first_ok" placeholder="XXX" maxlength="3">
+        <input id="first_ok" name="first_ok" placeholder="255" type="text" oninput="ip_eingabe_pruefen(this, 'second_ok')">
         <span class="dot">.</span>
-        <input type="text" name="second_ok" placeholder="XXX" maxlength="3">
+        <input id="second_ok" name="second_ok" placeholder="255" type="text" oninput="ip_eingabe_pruefen(this, 'third_ok')">
         <span class="dot">.</span>
-        <input type="text" name="third_ok" placeholder="XXX" maxlength="3">
+        <input id="third_ok" name="third_ok" placeholder="255" type="text" oninput="ip_eingabe_pruefen(this, 'fourth_ok')">
         <span class="dot">.</span>
-        <input type="text" name="fourth_ok" placeholder="XXX" maxlength="3">
+        <input id="fourth_ok" name="fourth_ok" placeholder="255" type="text" oninput="ip_eingabe_pruefen(this, 'net_mask_eingabe')">
         <span class="dot">/</span>
-        <input type="text" name="net_mask_eingabe" placeholder="XX" maxlength="2">
+        <input id="net_mask_eingabe" name="net_mask_eingabe" placeholder="32" type="text" oninput="mask_eingabe_pruefen(this, 'berechnen_button')">
         </div>
 
         <div class="berechnen_button">
-        <button type="submit">berechnen</button>
+        <button name= "berechnen_button" type="submit">berechnen</button>
         </div>
     </form>
     <div class="Ausgabe">
         {% if eingabe_falsch %}
-        Keine korrekte Eingabe!
+        <p>Keine korrekte Eingabe!</p>
         {% endif %}
 
         {% if eingabe_richtig %}
